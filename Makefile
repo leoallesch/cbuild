@@ -2,12 +2,11 @@ TARGET := cbuild
 
 SRC_DIRS := \
 	src/core \
+	src/core/allocator \
 	src/platform \
 	src/platform/posix \
-	src/platform/win32 \
+	src/platform/win32
 
 SRC_FILES := src/main.c
-
-INC_DIRS := include
 
 include lib/makebuilder/builder.mk
