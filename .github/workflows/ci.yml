@@ -19,12 +19,22 @@ jobs:
       - name: Install build dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential automake autoconf libtool
+          sudo apt-get install -y build-essential automake autoconf libtool m4 pkg-config gettext
 
       - name: Ensure submodules are initialized
         run: |
           git submodule sync --recursive
           git submodule update --init --recursive
+        shell: bash
+
+      - name: Bootstrap autotools in submodules
+        run: |
+          # Run autoreconf in each submodule that looks autotools-based to add missing helper files
+          git submodule foreach --recursive '
+            if [ -f configure.ac ] || [ -f configure.in ]; then
+              autoreconf -fi || automake --add-missing --copy || true
+            fi
+          '
         shell: bash
 
       - name: Build main target
