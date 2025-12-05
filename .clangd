@@ -1,7 +1,7 @@
 If:
     PathMatch: [src/.*, include/.*]
 CompileFlags:
-    CompilationDatabase: build/cbuld/
+    CompilationDatabase: build/cbuild/
 
 ---
 

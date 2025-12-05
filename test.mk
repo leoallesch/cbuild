@@ -3,11 +3,13 @@ TARGET := test
 BUILD_DIR := build
 
 SRC_DIRS := \
-	src/core \
+src/core \
+	src/core/allocator \
 	src/platform \
 	src/platform/posix \
 	src/platform/win32 \
 	tests \
+	tests/core/allocator \
 
 INC_DIRS := include
 
