@@ -1,0 +1,3 @@
+[submodule "lib/makebuilder"]
+	path = lib/makebuilder
+	url = https://github.com/leoallesch/makebuilder

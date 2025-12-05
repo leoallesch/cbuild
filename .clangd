@@ -1,0 +1,11 @@
+If:
+    PathMatch: [src/.*, include/.*]
+CompileFlags:
+    CompilationDatabase: build/cbuld/
+
+---
+
+If:
+    PathMatch: tests/.*
+CompileFlags:
+    CompilationDatabase: build/test/

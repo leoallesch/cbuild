@@ -1,13 +1,16 @@
-TARGET := cbuild
+TARGET := test
+
+BUILD_DIR := build
 
 SRC_DIRS := \
 	src/core \
 	src/platform \
 	src/platform/posix \
 	src/platform/win32 \
-
-SRC_FILES := src/main.c
+	tests \
 
 INC_DIRS := include
 
+include lib/makebuilder/lib_cpputest.mk
 include lib/makebuilder/builder.mk
+
