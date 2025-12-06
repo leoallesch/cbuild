@@ -2,7 +2,7 @@ TARGET := cbuild
 
 SRC_DIRS := \
 	src/core \
-	src/core/allocator \
+	src/core/memory \
 	src/platform \
 	src/platform/posix \
 	src/platform/win32
