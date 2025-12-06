@@ -11,8 +11,6 @@ SRC_DIRS := \
 	tests \
 	tests/core/memory \
 
-INC_DIRS := include
-
 include lib/makebuilder/lib_cpputest.mk
 include lib/makebuilder/builder.mk
 

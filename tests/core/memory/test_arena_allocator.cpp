@@ -1,8 +1,8 @@
-#include "CppUTest/TestHarness.h"
-
 extern "C" {
 #include "arena_allocator.h"
 }
+
+#include "CppUTest/TestHarness.h"
 
 TEST_GROUP(ArenaAllocator)
 {

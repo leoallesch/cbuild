@@ -1,3 +1,5 @@
+#// clang-format off
+
 TARGET := cbuild
 
 SRC_DIRS := \

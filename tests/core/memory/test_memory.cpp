@@ -1,7 +1,7 @@
-#include "CppUTest/UtestMacros.h"
 extern "C" {
 #include "memory.h"
 }
+
 #include "CppUTest/TestHarness.h"
 
 TEST_GROUP(MemoryContext)

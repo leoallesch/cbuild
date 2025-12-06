@@ -1,11 +1,13 @@
+#// clang-format off
+
 If:
-    PathMatch: [src/.*, include/.*]
+    PathMatch: [tests/.*]
 CompileFlags:
-    CompilationDatabase: build/cbuild/
+    CompilationDatabase: build/test/
 
 ---
 
 If:
-    PathMatch: tests/.*
+    PathMatch: [src/.*]
 CompileFlags:
-    CompilationDatabase: build/test/
+    CompilationDatabase: build/cbuild/
