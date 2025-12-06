@@ -1,3 +1,4 @@
+#include <cstdint>
 #include "CppUTest/TestHarness.h"
 
 extern "C" {
@@ -61,7 +62,7 @@ TEST(ArenaAllocator, ResetClearsOffset)
 
 TEST(ArenaAllocator, AlignedAllocPointerIsAligned)
 {
-  size_t alignment = 16;
+  size_t alignment = alignof(uintptr_t);
   void* p = arena_alloc_aligned(&arena, 32, alignment);
 
   CHECK(p != NULL);
@@ -70,13 +71,15 @@ TEST(ArenaAllocator, AlignedAllocPointerIsAligned)
 
 TEST(ArenaAllocator, AlignedAllocMultipleBlocksAreAligned)
 {
-  void* p1 = arena_alloc_aligned(&arena, 8, 32);
+  size_t alignment = alignof(uintptr_t);
+
+  void* p1 = arena_alloc_aligned(&arena, 8, alignment);
   CHECK(p1 != NULL);
-  CHECK(((uintptr_t)p1 % 32) == 0);
+  CHECK(((uintptr_t)p1 % alignment) == 0);
 
   void* p2 = arena_alloc_aligned(&arena, 8, 32);
   CHECK(p2 != NULL);
-  CHECK(((uintptr_t)p2 % 32) == 0);
+  CHECK(((uintptr_t)p2 % alignment) == 0);
 }
 
 TEST(ArenaAllocator, AlignedAllocReturnsNullIfNotEnoughSpace)
