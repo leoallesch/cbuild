@@ -1,4 +1,3 @@
-#include <cstdint>
 #include "CppUTest/TestHarness.h"
 
 extern "C" {
