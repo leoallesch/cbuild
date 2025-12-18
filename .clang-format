@@ -97,4 +97,5 @@ SpacesInParentheses: false
 SpacesInSquareBrackets: false
 Standard: Cpp11
 UseTab: Never
+InsertNewlineAtEOF: true
 ...

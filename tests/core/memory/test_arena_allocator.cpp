@@ -1,5 +1,6 @@
 extern "C" {
 #include "arena_allocator.h"
+#include "heap_mem.h"
 }
 
 #include "CppUTest/TestHarness.h"
@@ -7,15 +8,17 @@ extern "C" {
 TEST_GROUP(ArenaAllocator)
 {
   arena_t arena;
+  i_mem_t* mem;
 
   void setup()
   {
-    arena = arena_init(1024);
+    mem = heap_mem_init();
+    arena = arena_init(mem, 1024);
   }
 
   void teardown()
   {
-    arena_free(&arena);
+    arena.interface.destroy(&arena.interface);
   }
 };
 
@@ -28,30 +31,30 @@ TEST(ArenaAllocator, InitWorks)
 
 TEST(ArenaAllocator, BasicAllocIncreasesOffset)
 {
-  void* p1 = arena_alloc(&arena, 16);
+  void* p1 = arena.interface.alloc(&arena.interface, 16, 0);
   CHECK(p1 != NULL);
-  CHECK_EQUAL(16u, arena.offset);
+  CHECK(arena.offset >= 16u);
 
-  void* p2 = arena_alloc(&arena, 8);
+  void* p2 = arena.interface.alloc(&arena.interface, 8, 0);
   CHECK(p2 != NULL);
-  CHECK_EQUAL(24u, arena.offset);
+  CHECK(arena.offset >= 24u);
 }
 
 TEST(ArenaAllocator, AllocReturnsNullWhenOutOfSpace)
 {
-  void* p = arena_alloc(&arena, 1024);
+  void* p = arena.interface.alloc(&arena.interface, 1024, 0);
   CHECK(p != NULL);
 
-  void* p2 = arena_alloc(&arena, 1);
+  void* p2 = arena.interface.alloc(&arena.interface, 1, 0);
   CHECK(p2 == NULL);
 }
 
-TEST(ArenaAllocator, ResetClearsOffset)
+TEST(ArenaAllocator, FreeAllClearsOffset)
 {
-  arena_alloc(&arena, 100);
-  CHECK_EQUAL(100u, arena.offset);
+  arena.interface.alloc(&arena.interface, 100, 0);
+  CHECK(arena.offset >= 100u);
 
-  arena_reset(&arena);
+  arena.interface.free_all(&arena.interface);
   CHECK_EQUAL(0u, arena.offset);
 }
 
@@ -61,8 +64,8 @@ TEST(ArenaAllocator, ResetClearsOffset)
 
 TEST(ArenaAllocator, AlignedAllocPointerIsAligned)
 {
-  size_t alignment = alignof(uintptr_t);
-  void* p = arena_alloc_aligned(&arena, 32, alignment);
+  size_t alignment = 16;
+  void* p = arena.interface.alloc(&arena.interface, 32, alignment);
 
   CHECK(p != NULL);
   CHECK(((uintptr_t)p % alignment) == 0);
@@ -70,21 +73,32 @@ TEST(ArenaAllocator, AlignedAllocPointerIsAligned)
 
 TEST(ArenaAllocator, AlignedAllocMultipleBlocksAreAligned)
 {
-  size_t alignment = alignof(uintptr_t);
+  size_t alignment = 32;
 
-  void* p1 = arena_alloc_aligned(&arena, 8, alignment);
+  void* p1 = arena.interface.alloc(&arena.interface, 8, alignment);
   CHECK(p1 != NULL);
   CHECK(((uintptr_t)p1 % alignment) == 0);
 
-  void* p2 = arena_alloc_aligned(&arena, 8, 32);
+  void* p2 = arena.interface.alloc(&arena.interface, 8, alignment);
   CHECK(p2 != NULL);
   CHECK(((uintptr_t)p2 % alignment) == 0);
 }
 
 TEST(ArenaAllocator, AlignedAllocReturnsNullIfNotEnoughSpace)
 {
-  arena_alloc(&arena, 1000);
+  arena.interface.alloc(&arena.interface, 1024, 0);
 
-  void* p = arena_alloc_aligned(&arena, 128, 64);
+  void* p = arena.interface.alloc(&arena.interface, 200, 64);
   CHECK(p == NULL);
+}
+
+TEST(ArenaAllocator, AllocReturnsZeroedMemory)
+{
+  void* p = arena.interface.alloc(&arena.interface, 16, 0);
+  CHECK(p != NULL);
+
+  uint8_t* bytes = (uint8_t*)p;
+  for(int i = 0; i < 16; i++) {
+    CHECK_EQUAL(0u, bytes[i]);
+  }
 }

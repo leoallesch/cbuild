@@ -1,24 +1,38 @@
-#include <stdio.h>
+#include <stddef.h>
 
-#include "memory.h"
+#include "arena_allocator.h"
+#include "array_list.h"
+#include "build_step.h"
+#include "builder.h"
+#include "directory.h"
+#include "i_allocator.h"
+#include "i_mem.h"
+#include "logger.h"
+#include "mem_utils.h"
+#include "memory_context.h"
+#include "path.h"
+#include "process.h"
+#include "string_helper.h"
+#include "virtual_mem.h"
+
+extern void build(builder_t* builder);
 
 int main()
 {
-  memory_context_t ctx = memory_context_create(MB(100), KB(10));
+  i_mem_t* vmem = virtual_mem_init();
+  arena_t arena = arena_init(vmem, MB(10));
 
-  int* arr = context_alloc_global_type(&ctx, int, 10);
+  memory_context_t* context = memory_context_create(vmem, &arena.interface, KB(10));
 
-  for(int i = 0; i < 10; i++) {
-    arr[i] = i;
-  }
+  logger_init();
+  logger_set_level(LOG_DEBUG);
 
-  for(int i = 0; i < 10; i++) {
-    printf("%d ", arr[i]);
-  }
+  builder_t* builder = builder_create(context->allocator);
 
-  printf("\nHello, cbuild!\n");
+  build(builder);
 
-  memory_context_destroy(&ctx);
+  logger_shutdown();
+  memory_context_destroy(context);
 
   return 0;
 }
