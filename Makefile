@@ -4,8 +4,13 @@ TARGET := cbuild
 
 PLATFORM_DIR := posix
 
+INC_DIRS := include
+
+# SRC_FILES := build.c
+
 SRC_DIRS := \
-	src/ \
+	src \
+	src/cli \
 	src/core \
 	src/core/memory \
 	src/core/allocators \
@@ -17,6 +22,6 @@ SRC_DIRS := \
 	src/builder \
 	src/platform \
 	src/platform/$(PLATFORM_DIR)/core/memory \
-	src/platform/$(PLATFORM_DIR)/core/os \
+	src/platform/$(PLATFORM_DIR)/core/os
 
 include lib/makebuilder/builder.mk

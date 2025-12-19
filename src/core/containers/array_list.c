@@ -1,8 +1,7 @@
-#include "array_list.h"
-
 #include <string.h>
+#include "core/container/array_list.h"
 
-void* array_list_init(i_allocator_t* allocator, size_t initial_capacity, size_t element_size)
+void* array_list_init(allocator_t* allocator, size_t initial_capacity, size_t element_size)
 {
   void* ptr = NULL;
   size_t size = initial_capacity * element_size + sizeof(array_list_header_t);

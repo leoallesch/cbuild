@@ -1,0 +1,33 @@
+{
+	"C Header": {
+		"scope": "c, c++",
+		"prefix": "cheader",
+		"body": [
+			"#pragma once",
+			"",
+			"#include <stdint.h>",
+			"#include <stddef.h>",
+			"",
+			"#ifdef __cplusplus",
+			"extern \"C\" {",
+			"#endif",
+			"",
+			"$0",
+			"",
+			"#ifdef __cplusplus",
+			"}",
+			"#endif"
+		],
+		"description": "C header file template with pragma once and C++ guards"
+	},
+	"C Source": {
+		"scope": "c, c++",
+		"prefix": "csource",
+		"body": [
+			"#include \"${1:header.h}\"",
+			"",
+			"$0"
+		],
+		"description": "C source file template"
+	}
+}

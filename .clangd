@@ -1,13 +1,13 @@
 #// clang-format off
 
 If:
-    PathMatch: [tests/.*]
+    PathMatch: [src/cbuild/.*]
 CompileFlags:
-    CompilationDatabase: build/test/
+    CompilationDatabase: build/artifacts/cbuild/
 
 ---
 
 If:
-    PathMatch: [src/.*]
+    PathMatch: [src/core/.*]
 CompileFlags:
-    CompilationDatabase: build/cbuild/
+    CompilationDatabase: build/artifacts/core/

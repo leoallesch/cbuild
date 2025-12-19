@@ -1,11 +1,10 @@
-#include "array_list.h"
-#include "directory.h"
-#include "filesystem.h"
-#include "i_allocator.h"
-#include "logger.h"
-#include "path.h"
-#include "string_builder.h"
-#include "string_helper.h"
+#include "core/alloc/allocator.h"
+#include "core/container/array_list.h"
+#include "core/logger/logger.h"
+#include "core/os/directory.h"
+#include "core/os/filesystem.h"
+#include "core/os/path.h"
+#include "core/string/string_builder.h"
 
 #include <stdio.h>
 
@@ -53,7 +52,7 @@ static path_token_t classify_segment(string_t seg)
   return tok;
 }
 
-static string_t build_path_from_segments(string_t* str_list, bool absolute, i_allocator_t* alloc)
+static string_t build_path_from_segments(string_t* str_list, bool absolute, allocator_t* alloc)
 {
   string_builder_t final_sb = string_builder_init(alloc);
 
@@ -80,7 +79,7 @@ bool path_is_absolute(string_t path)
   return (string_front(path) == PATH_SEP);
 }
 
-string_t path_normalize(string_t path, i_allocator_t* allocator)
+string_t path_normalize(string_t path, allocator_t* allocator)
 {
   if(string_isempty(path) || !allocator) {
     return string(".");
@@ -123,7 +122,7 @@ string_t path_normalize(string_t path, i_allocator_t* allocator)
   return build_path_from_segments(temp_list, is_absolute, allocator);
 }
 
-string_t path_join(string_t base, string_t relative, i_allocator_t* alloc)
+string_t path_join(string_t base, string_t relative, allocator_t* alloc)
 {
   if(!alloc) {
     return string(".");
@@ -137,7 +136,7 @@ string_t path_join(string_t base, string_t relative, i_allocator_t* alloc)
   }
   string_builder_append(&sb, relative);
 
-  return path_normalize(string_builder_to_string(&sb), alloc);
+  return string_builder_to_string(&sb);
 }
 
 string_t path_dirname(string_t path)
@@ -213,7 +212,7 @@ string_t path_stem(string_t path)
   return string_chop_delim_left(base, '.');
 }
 
-string_t path_absolute(string_t path, i_allocator_t* alloc)
+string_t path_absolute(string_t path, allocator_t* alloc)
 {
   if(!alloc) {
     return string(".");
@@ -226,7 +225,7 @@ string_t path_absolute(string_t path, i_allocator_t* alloc)
   return path_join(directory_cwd(alloc), path, alloc);
 }
 
-string_t path_relative(string_t path, i_allocator_t* alloc)
+string_t path_relative(string_t path, allocator_t* alloc)
 {
   if(!alloc) {
     return string(".");
@@ -243,7 +242,7 @@ string_t path_relative(string_t path, i_allocator_t* alloc)
   return rel;
 }
 
-string_t* path_glob(string_t path, i_allocator_t* alloc)
+string_t* path_glob(string_t path, allocator_t* alloc)
 {
   string_t dir = path_dirname(path);
   string_t base = path_basename(path);

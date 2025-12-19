@@ -1,5 +1,5 @@
 extern "C" {
-#include "arena_allocator.h"
+#include "core/alloc/arena_allocator.h"
 #include "heap_mem.h"
 }
 
@@ -8,7 +8,7 @@ extern "C" {
 TEST_GROUP(ArenaAllocator)
 {
   arena_t arena;
-  i_mem_t* mem;
+  mem_t* mem;
 
   void setup()
   {

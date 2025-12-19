@@ -1,5 +1,5 @@
-#include "i_allocator.h"
-#include "memory_context.h"
+#include "core/alloc/arena_allocator.h"
+#include "core/mem/memory_context.h"
 
 #include <assert.h>
 #include <string.h>
@@ -14,14 +14,13 @@ struct scratch_t {
 };
 
 /* ---------------- Global Context ---------------- */
-
 static memory_context_t g_memory_context;
 
 /* ---------------- API ---------------- */
 
 memory_context_t* memory_context_create(
-  i_mem_t* mem,
-  i_allocator_t* allocator,
+  mem_t* mem,
+  allocator_t* allocator,
   size_t scratch_allocator_size)
 {
   memory_context_t* ctx = &g_memory_context;
@@ -102,7 +101,7 @@ void scratch_end(scratch_t* scratch)
   scratch->arena->offset = expected_offset;
 }
 
-i_allocator_t* scratch_allocator(scratch_t* scratch)
+allocator_t* scratch_allocator(scratch_t* scratch)
 {
   assert(scratch);
   return &scratch->arena->interface;

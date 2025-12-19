@@ -1,6 +1,6 @@
-#include "hash_table.h"
-#include "i_allocator.h"
-#include "string_helper.h"
+#include "core/alloc/allocator.h"
+#include "core/container/hash_table.h"
+#include "core/string/string.h"
 
 #include <stdio.h>
 
@@ -26,7 +26,7 @@ void hash_table_print(hash_table_t* table)
     if(entry) {
       printf("%ld ", i);
       while(entry != NULL) {
-        printf(STR_FMT": %p -> ", STR_ARG(entry->key), entry->value);
+        printf(STR_FMT ": %p -> ", STR_ARG(entry->key), entry->value);
         entry = entry->next;
       }
       printf("\n");
@@ -63,7 +63,7 @@ void* hash_table_get(hash_table_t* ht, string_t key)
   return NULL;
 }
 
-hash_table_t hash_table_init(i_allocator_t* allocator)
+hash_table_t hash_table_init(allocator_t* allocator)
 {
   hash_table_entry_t** entries = allocator_alloc(allocator, sizeof(hash_table_entry_t*) * INITIAL_CAPACITY, 0);
   if(entries == NULL)

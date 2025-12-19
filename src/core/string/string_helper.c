@@ -1,18 +1,10 @@
-#include "array_list.h"
-#include "i_allocator.h"
-#include "string_helper.h"
+#include "core/alloc/allocator.h"
+#include "core/container/array_list.h"
+#include "core/string/string.h"
 
 #include <string.h>
 
-string_t string_from_buffer(const char* buffer, size_t len)
-{
-  return (string_t){
-    .string = buffer,
-    .length = len
-  };
-}
-
-string_t string_copy_buffer(i_allocator_t* allocator, const char* buffer, size_t len)
+string_t string_copy_buffer(allocator_t* allocator, const char* buffer, size_t len)
 {
   char* b = allocator_alloc(allocator, len, alignof(char));
   memcpy(b, buffer, len);
@@ -22,9 +14,9 @@ string_t string_copy_buffer(i_allocator_t* allocator, const char* buffer, size_t
   };
 }
 
-string_t string_copy(i_allocator_t* allocator, string_t str)
+string_t string_copy(allocator_t* allocator, string_t str)
 {
-  char* b = allocator_alloc(allocator, str.length, 0);
+  char* b = allocator_alloc(allocator, str.length, 1);
   memcpy(b, str.string, str.length);
   return (string_t){
     .string = b,
@@ -32,15 +24,15 @@ string_t string_copy(i_allocator_t* allocator, string_t str)
   };
 }
 
-const char* string_to_cstr(i_allocator_t* allocator, string_t str)
+const char* string_to_cstr(allocator_t* allocator, string_t str)
 {
-  char* b = allocator_alloc(allocator, str.length + 1, 0);
+  char* b = allocator_alloc(allocator, str.length + 1, 1);
   memcpy(b, str.string, str.length);
   b[str.length] = '\0';
   return b;
 }
 
-const char** string_arr_to_cstr_arr(i_allocator_t* allocator, string_t* str_list)
+const char** string_arr_to_cstr_arr(allocator_t* allocator, string_t* str_list)
 {
   const char** res = array_list(const char*, allocator);
   array_list_for_each(str_list, string_t, str)
@@ -51,9 +43,9 @@ const char** string_arr_to_cstr_arr(i_allocator_t* allocator, string_t* str_list
   return res;
 }
 
-string_t string_concat(i_allocator_t* allocator, string_t a, string_t b)
+string_t string_concat(allocator_t* allocator, string_t a, string_t b)
 {
-  char* buffer = allocator_alloc(allocator, a.length + b.length, 0);
+  char* buffer = allocator_alloc(allocator, a.length + b.length, 1);
   memcpy(buffer, a.string, a.length);
   memcpy(buffer + a.length, b.string, b.length);
   return (string_t){
@@ -104,7 +96,7 @@ int string_compare(string_t a, string_t b)
   return (a.length < b.length) ? -1 : 1;
 }
 
-string_t* string_split(i_allocator_t* allocator, string_t str, char delim, bool keep_delim)
+string_t* string_split(allocator_t* allocator, string_t str, char delim, bool keep_delim)
 {
   string_t* segments = array_list(string_t, allocator);
 
@@ -173,7 +165,14 @@ bool string_contains(string_t str, string_t target)
   return contains;
 }
 
-bool string_starts_with(string_t str, string_t target);
+bool string_starts_with(string_t str, string_t target)
+{
+  if(str.length < target.length) {
+    return false;
+  }
+  return memcmp(str.string, target.string, target.length) == 0;
+}
+
 bool string_ends_with(string_t str, string_t target)
 {
   size_t str_len = string_length(str);
@@ -187,55 +186,62 @@ bool string_ends_with(string_t str, string_t target)
   return string_equals(suffix, target);
 }
 
-int string_indexof(string_t str, char c)
+size_t string_find(string_t str, string_t needle)
 {
-  int index = -1;
+  if(needle.length == 0 || needle.length > str.length) {
+    return (size_t)-1;
+  }
 
+  for(size_t i = 0; i <= str.length - needle.length; i++) {
+    if(memcmp(str.string + i, needle.string, needle.length) == 0) {
+      return i;
+    }
+  }
+
+  return (size_t)-1;
+}
+
+int string_index_of(string_t str, char c)
+{
   for(size_t i = 0; i < string_length(str); i++) {
     if(string_at(str, i) == c) {
-      index = i;
-      break;
+      return (int)i;
     }
   }
-
-  return index;
+  return -1;
 }
 
-int string_lindexof(string_t str, char c)
+int string_last_index_of(string_t str, char c)
 {
-  int index = -1;
-
-  for(int i = string_length(str); i >= 0; i--) {
+  for(int i = (int)string_length(str) - 1; i >= 0; i--) {
     if(string_at(str, i) == c) {
-      index = i;
-      break;
+      return i;
     }
   }
-
-  return index;
+  return -1;
 }
 
-string_t string_chop_delim_left(string_t str, char delim)
+string_t string_chop_left(string_t str, char delim)
 {
-  int index = string_indexof(str, delim);
+  int index = string_index_of(str, delim);
   if(index >= 0) {
     return string_slice(str, 0, index);
   }
   return string_empty();
 }
 
-string_t string_chop_delim_right(string_t str, char delim)
+string_t string_chop_right(string_t str, char delim)
 {
-  int index = string_lindexof(str, delim);
+  int index = string_last_index_of(str, delim);
   if(index >= 0) {
-    return string_slice(str, index, string_length(str));
+    return string_slice(str, index + 1, string_length(str));
   }
   return string_empty();
 }
 
 string_t string_chop_string(string_t str, string_t tool)
 {
-  string_t window = string_from_buffer(str.string, string_length(tool));
+  string_t window = string_from(str.string, string_length(tool));
   size_t i = 0;
   bool found = false;
   while(i + string_length(tool) < string_length(str)) {

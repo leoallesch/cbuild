@@ -1,0 +1,146 @@
+[
+	{
+		"directory": "/home/leo/dev/c/cbuild",
+		"command":   "gcc -Iinclude -Isrc -Isrc/cli -Isrc/core -Isrc/core/memory -Isrc/core/allocators -Isrc/core/containers -Isrc/core/logger -Isrc/core/os -Isrc/core/string -Isrc/graph -Isrc/builder -Isrc/platform -Isrc/platform/posix/core/memory -Isrc/platform/posix/core/os -Wall -Wextra -Werror -O0 -g -MMD -MP  -std=gnu11 -c src/main.c -o build/cbuild/src/main.c.o",
+		"file":      "/home/leo/dev/c/cbuild/src/main.c",
+		"output":    "/home/leo/dev/c/cbuild/build/cbuild/src/main.c.o"
+	},
+	{
+		"directory": "/home/leo/dev/c/cbuild",
+		"command":   "gcc -Iinclude -Isrc -Isrc/cli -Isrc/core -Isrc/core/memory -Isrc/core/allocators -Isrc/core/containers -Isrc/core/logger -Isrc/core/os -Isrc/core/string -Isrc/graph -Isrc/builder -Isrc/platform -Isrc/platform/posix/core/memory -Isrc/platform/posix/core/os -Wall -Wextra -Werror -O0 -g -MMD -MP  -std=gnu11 -c src/cli/arg.c -o build/cbuild/src/cli/arg.c.o",
+		"file":      "/home/leo/dev/c/cbuild/src/cli/arg.c",
+		"output":    "/home/leo/dev/c/cbuild/build/cbuild/src/cli/arg.c.o"
+	},
+	{
+		"directory": "/home/leo/dev/c/cbuild",
+		"command":   "gcc -Iinclude -Isrc -Isrc/cli -Isrc/core -Isrc/core/memory -Isrc/core/allocators -Isrc/core/containers -Isrc/core/logger -Isrc/core/os -Isrc/core/string -Isrc/graph -Isrc/builder -Isrc/platform -Isrc/platform/posix/core/memory -Isrc/platform/posix/core/os -Wall -Wextra -Werror -O0 -g -MMD -MP  -std=gnu11 -c src/core/memory/static_buffer_mem.c -o build/cbuild/src/core/memory/static_buffer_mem.c.o",
+		"file":      "/home/leo/dev/c/cbuild/src/core/memory/static_buffer_mem.c",
+		"output":    "/home/leo/dev/c/cbuild/build/cbuild/src/core/memory/static_buffer_mem.c.o"
+	},
+	{
+		"directory": "/home/leo/dev/c/cbuild",
+		"command":   "gcc -Iinclude -Isrc -Isrc/cli -Isrc/core -Isrc/core/memory -Isrc/core/allocators -Isrc/core/containers -Isrc/core/logger -Isrc/core/os -Isrc/core/string -Isrc/graph -Isrc/builder -Isrc/platform -Isrc/platform/posix/core/memory -Isrc/platform/posix/core/os -Wall -Wextra -Werror -O0 -g -MMD -MP  -std=gnu11 -c src/core/memory/memory_context.c -o build/cbuild/src/core/memory/memory_context.c.o",
+		"file":      "/home/leo/dev/c/cbuild/src/core/memory/memory_context.c",
+		"output":    "/home/leo/dev/c/cbuild/build/cbuild/src/core/memory/memory_context.c.o"
+	},
+	{
+		"directory": "/home/leo/dev/c/cbuild",
+		"command":   "gcc -Iinclude -Isrc -Isrc/cli -Isrc/core -Isrc/core/memory -Isrc/core/allocators -Isrc/core/containers -Isrc/core/logger -Isrc/core/os -Isrc/core/string -Isrc/graph -Isrc/builder -Isrc/platform -Isrc/platform/posix/core/memory -Isrc/platform/posix/core/os -Wall -Wextra -Werror -O0 -g -MMD -MP  -std=gnu11 -c src/core/memory/heap_mem.c -o build/cbuild/src/core/memory/heap_mem.c.o",
+		"file":      "/home/leo/dev/c/cbuild/src/core/memory/heap_mem.c",
+		"output":    "/home/leo/dev/c/cbuild/build/cbuild/src/core/memory/heap_mem.c.o"
+	},
+	{
+		"directory": "/home/leo/dev/c/cbuild",
+		"command":   "gcc -Iinclude -Isrc -Isrc/cli -Isrc/core -Isrc/core/memory -Isrc/core/allocators -Isrc/core/containers -Isrc/core/logger -Isrc/core/os -Isrc/core/string -Isrc/graph -Isrc/builder -Isrc/platform -Isrc/platform/posix/core/memory -Isrc/platform/posix/core/os -Wall -Wextra -Werror -O0 -g -MMD -MP  -std=gnu11 -c src/core/allocators/arena_allocator.c -o build/cbuild/src/core/allocators/arena_allocator.c.o",
+		"file":      "/home/leo/dev/c/cbuild/src/core/allocators/arena_allocator.c",
+		"output":    "/home/leo/dev/c/cbuild/build/cbuild/src/core/allocators/arena_allocator.c.o"
+	},
+	{
+		"directory": "/home/leo/dev/c/cbuild",
+		"command":   "gcc -Iinclude -Isrc -Isrc/cli -Isrc/core -Isrc/core/memory -Isrc/core/allocators -Isrc/core/containers -Isrc/core/logger -Isrc/core/os -Isrc/core/string -Isrc/graph -Isrc/builder -Isrc/platform -Isrc/platform/posix/core/memory -Isrc/platform/posix/core/os -Wall -Wextra -Werror -O0 -g -MMD -MP  -std=gnu11 -c src/core/containers/stack.c -o build/cbuild/src/core/containers/stack.c.o",
+		"file":      "/home/leo/dev/c/cbuild/src/core/containers/stack.c",
+		"output":    "/home/leo/dev/c/cbuild/build/cbuild/src/core/containers/stack.c.o"
+	},
+	{
+		"directory": "/home/leo/dev/c/cbuild",
+		"command":   "gcc -Iinclude -Isrc -Isrc/cli -Isrc/core -Isrc/core/memory -Isrc/core/allocators -Isrc/core/containers -Isrc/core/logger -Isrc/core/os -Isrc/core/string -Isrc/graph -Isrc/builder -Isrc/platform -Isrc/platform/posix/core/memory -Isrc/platform/posix/core/os -Wall -Wextra -Werror -O0 -g -MMD -MP  -std=gnu11 -c src/core/containers/hash_table.c -o build/cbuild/src/core/containers/hash_table.c.o",
+		"file":      "/home/leo/dev/c/cbuild/src/core/containers/hash_table.c",
+		"output":    "/home/leo/dev/c/cbuild/build/cbuild/src/core/containers/hash_table.c.o"
+	},
+	{
+		"directory": "/home/leo/dev/c/cbuild",
+		"command":   "gcc -Iinclude -Isrc -Isrc/cli -Isrc/core -Isrc/core/memory -Isrc/core/allocators -Isrc/core/containers -Isrc/core/logger -Isrc/core/os -Isrc/core/string -Isrc/graph -Isrc/builder -Isrc/platform -Isrc/platform/posix/core/memory -Isrc/platform/posix/core/os -Wall -Wextra -Werror -O0 -g -MMD -MP  -std=gnu11 -c src/core/containers/intrusive_list.c -o build/cbuild/src/core/containers/intrusive_list.c.o",
+		"file":      "/home/leo/dev/c/cbuild/src/core/containers/intrusive_list.c",
+		"output":    "/home/leo/dev/c/cbuild/build/cbuild/src/core/containers/intrusive_list.c.o"
+	},
+	{
+		"directory": "/home/leo/dev/c/cbuild",
+		"command":   "gcc -Iinclude -Isrc -Isrc/cli -Isrc/core -Isrc/core/memory -Isrc/core/allocators -Isrc/core/containers -Isrc/core/logger -Isrc/core/os -Isrc/core/string -Isrc/graph -Isrc/builder -Isrc/platform -Isrc/platform/posix/core/memory -Isrc/platform/posix/core/os -Wall -Wextra -Werror -O0 -g -MMD -MP  -std=gnu11 -c src/core/containers/array_list.c -o build/cbuild/src/core/containers/array_list.c.o",
+		"file":      "/home/leo/dev/c/cbuild/src/core/containers/array_list.c",
+		"output":    "/home/leo/dev/c/cbuild/build/cbuild/src/core/containers/array_list.c.o"
+	},
+	{
+		"directory": "/home/leo/dev/c/cbuild",
+		"command":   "gcc -Iinclude -Isrc -Isrc/cli -Isrc/core -Isrc/core/memory -Isrc/core/allocators -Isrc/core/containers -Isrc/core/logger -Isrc/core/os -Isrc/core/string -Isrc/graph -Isrc/builder -Isrc/platform -Isrc/platform/posix/core/memory -Isrc/platform/posix/core/os -Wall -Wextra -Werror -O0 -g -MMD -MP  -std=gnu11 -c src/core/logger/logger.c -o build/cbuild/src/core/logger/logger.c.o",
+		"file":      "/home/leo/dev/c/cbuild/src/core/logger/logger.c",
+		"output":    "/home/leo/dev/c/cbuild/build/cbuild/src/core/logger/logger.c.o"
+	},
+	{
+		"directory": "/home/leo/dev/c/cbuild",
+		"command":   "gcc -Iinclude -Isrc -Isrc/cli -Isrc/core -Isrc/core/memory -Isrc/core/allocators -Isrc/core/containers -Isrc/core/logger -Isrc/core/os -Isrc/core/string -Isrc/graph -Isrc/builder -Isrc/platform -Isrc/platform/posix/core/memory -Isrc/platform/posix/core/os -Wall -Wextra -Werror -O0 -g -MMD -MP  -std=gnu11 -c src/core/os/path.c -o build/cbuild/src/core/os/path.c.o",
+		"file":      "/home/leo/dev/c/cbuild/src/core/os/path.c",
+		"output":    "/home/leo/dev/c/cbuild/build/cbuild/src/core/os/path.c.o"
+	},
+	{
+		"directory": "/home/leo/dev/c/cbuild",
+		"command":   "gcc -Iinclude -Isrc -Isrc/cli -Isrc/core -Isrc/core/memory -Isrc/core/allocators -Isrc/core/containers -Isrc/core/logger -Isrc/core/os -Isrc/core/string -Isrc/graph -Isrc/builder -Isrc/platform -Isrc/platform/posix/core/memory -Isrc/platform/posix/core/os -Wall -Wextra -Werror -O0 -g -MMD -MP  -std=gnu11 -c src/core/string/string_helper.c -o build/cbuild/src/core/string/string_helper.c.o",
+		"file":      "/home/leo/dev/c/cbuild/src/core/string/string_helper.c",
+		"output":    "/home/leo/dev/c/cbuild/build/cbuild/src/core/string/string_helper.c.o"
+	},
+	{
+		"directory": "/home/leo/dev/c/cbuild",
+		"command":   "gcc -Iinclude -Isrc -Isrc/cli -Isrc/core -Isrc/core/memory -Isrc/core/allocators -Isrc/core/containers -Isrc/core/logger -Isrc/core/os -Isrc/core/string -Isrc/graph -Isrc/builder -Isrc/platform -Isrc/platform/posix/core/memory -Isrc/platform/posix/core/os -Wall -Wextra -Werror -O0 -g -MMD -MP  -std=gnu11 -c src/core/string/string_builder.c -o build/cbuild/src/core/string/string_builder.c.o",
+		"file":      "/home/leo/dev/c/cbuild/src/core/string/string_builder.c",
+		"output":    "/home/leo/dev/c/cbuild/build/cbuild/src/core/string/string_builder.c.o"
+	},
+	{
+		"directory": "/home/leo/dev/c/cbuild",
+		"command":   "gcc -Iinclude -Isrc -Isrc/cli -Isrc/core -Isrc/core/memory -Isrc/core/allocators -Isrc/core/containers -Isrc/core/logger -Isrc/core/os -Isrc/core/string -Isrc/graph -Isrc/builder -Isrc/platform -Isrc/platform/posix/core/memory -Isrc/platform/posix/core/os -Wall -Wextra -Werror -O0 -g -MMD -MP  -std=gnu11 -c src/graph/dag.c -o build/cbuild/src/graph/dag.c.o",
+		"file":      "/home/leo/dev/c/cbuild/src/graph/dag.c",
+		"output":    "/home/leo/dev/c/cbuild/build/cbuild/src/graph/dag.c.o"
+	},
+	{
+		"directory": "/home/leo/dev/c/cbuild",
+		"command":   "gcc -Iinclude -Isrc -Isrc/cli -Isrc/core -Isrc/core/memory -Isrc/core/allocators -Isrc/core/containers -Isrc/core/logger -Isrc/core/os -Isrc/core/string -Isrc/graph -Isrc/builder -Isrc/platform -Isrc/platform/posix/core/memory -Isrc/platform/posix/core/os -Wall -Wextra -Werror -O0 -g -MMD -MP  -std=gnu11 -c src/builder/builder.c -o build/cbuild/src/builder/builder.c.o",
+		"file":      "/home/leo/dev/c/cbuild/src/builder/builder.c",
+		"output":    "/home/leo/dev/c/cbuild/build/cbuild/src/builder/builder.c.o"
+	},
+	{
+		"directory": "/home/leo/dev/c/cbuild",
+		"command":   "gcc -Iinclude -Isrc -Isrc/cli -Isrc/core -Isrc/core/memory -Isrc/core/allocators -Isrc/core/containers -Isrc/core/logger -Isrc/core/os -Isrc/core/string -Isrc/graph -Isrc/builder -Isrc/platform -Isrc/platform/posix/core/memory -Isrc/platform/posix/core/os -Wall -Wextra -Werror -O0 -g -MMD -MP  -std=gnu11 -c src/builder/target.c -o build/cbuild/src/builder/target.c.o",
+		"file":      "/home/leo/dev/c/cbuild/src/builder/target.c",
+		"output":    "/home/leo/dev/c/cbuild/build/cbuild/src/builder/target.c.o"
+	},
+	{
+		"directory": "/home/leo/dev/c/cbuild",
+		"command":   "gcc -Iinclude -Isrc -Isrc/cli -Isrc/core -Isrc/core/memory -Isrc/core/allocators -Isrc/core/containers -Isrc/core/logger -Isrc/core/os -Isrc/core/string -Isrc/graph -Isrc/builder -Isrc/platform -Isrc/platform/posix/core/memory -Isrc/platform/posix/core/os -Wall -Wextra -Werror -O0 -g -MMD -MP  -std=gnu11 -c src/builder/build_step.c -o build/cbuild/src/builder/build_step.c.o",
+		"file":      "/home/leo/dev/c/cbuild/src/builder/build_step.c",
+		"output":    "/home/leo/dev/c/cbuild/build/cbuild/src/builder/build_step.c.o"
+	},
+	{
+		"directory": "/home/leo/dev/c/cbuild",
+		"command":   "gcc -Iinclude -Isrc -Isrc/cli -Isrc/core -Isrc/core/memory -Isrc/core/allocators -Isrc/core/containers -Isrc/core/logger -Isrc/core/os -Isrc/core/string -Isrc/graph -Isrc/builder -Isrc/platform -Isrc/platform/posix/core/memory -Isrc/platform/posix/core/os -Wall -Wextra -Werror -O0 -g -MMD -MP  -std=gnu11 -c src/builder/depfile.c -o build/cbuild/src/builder/depfile.c.o",
+		"file":      "/home/leo/dev/c/cbuild/src/builder/depfile.c",
+		"output":    "/home/leo/dev/c/cbuild/build/cbuild/src/builder/depfile.c.o"
+	},
+	{
+		"directory": "/home/leo/dev/c/cbuild",
+		"command":   "gcc -Iinclude -Isrc -Isrc/cli -Isrc/core -Isrc/core/memory -Isrc/core/allocators -Isrc/core/containers -Isrc/core/logger -Isrc/core/os -Isrc/core/string -Isrc/graph -Isrc/builder -Isrc/platform -Isrc/platform/posix/core/memory -Isrc/platform/posix/core/os -Wall -Wextra -Werror -O0 -g -MMD -MP  -std=gnu11 -c src/platform/posix/core/memory/virtual_mem_posix.c -o build/cbuild/src/platform/posix/core/memory/virtual_mem_posix.c.o",
+		"file":      "/home/leo/dev/c/cbuild/src/platform/posix/core/memory/virtual_mem_posix.c",
+		"output":    "/home/leo/dev/c/cbuild/build/cbuild/src/platform/posix/core/memory/virtual_mem_posix.c.o"
+	},
+	{
+		"directory": "/home/leo/dev/c/cbuild",
+		"command":   "gcc -Iinclude -Isrc -Isrc/cli -Isrc/core -Isrc/core/memory -Isrc/core/allocators -Isrc/core/containers -Isrc/core/logger -Isrc/core/os -Isrc/core/string -Isrc/graph -Isrc/builder -Isrc/platform -Isrc/platform/posix/core/memory -Isrc/platform/posix/core/os -Wall -Wextra -Werror -O0 -g -MMD -MP  -std=gnu11 -c src/platform/posix/core/os/directory_posix.c -o build/cbuild/src/platform/posix/core/os/directory_posix.c.o",
+		"file":      "/home/leo/dev/c/cbuild/src/platform/posix/core/os/directory_posix.c",
+		"output":    "/home/leo/dev/c/cbuild/build/cbuild/src/platform/posix/core/os/directory_posix.c.o"
+	},
+	{
+		"directory": "/home/leo/dev/c/cbuild",
+		"command":   "gcc -Iinclude -Isrc -Isrc/cli -Isrc/core -Isrc/core/memory -Isrc/core/allocators -Isrc/core/containers -Isrc/core/logger -Isrc/core/os -Isrc/core/string -Isrc/graph -Isrc/builder -Isrc/platform -Isrc/platform/posix/core/memory -Isrc/platform/posix/core/os -Wall -Wextra -Werror -O0 -g -MMD -MP  -std=gnu11 -c src/platform/posix/core/os/datetime_posix.c -o build/cbuild/src/platform/posix/core/os/datetime_posix.c.o",
+		"file":      "/home/leo/dev/c/cbuild/src/platform/posix/core/os/datetime_posix.c",
+		"output":    "/home/leo/dev/c/cbuild/build/cbuild/src/platform/posix/core/os/datetime_posix.c.o"
+	},
+	{
+		"directory": "/home/leo/dev/c/cbuild",
+		"command":   "gcc -Iinclude -Isrc -Isrc/cli -Isrc/core -Isrc/core/memory -Isrc/core/allocators -Isrc/core/containers -Isrc/core/logger -Isrc/core/os -Isrc/core/string -Isrc/graph -Isrc/builder -Isrc/platform -Isrc/platform/posix/core/memory -Isrc/platform/posix/core/os -Wall -Wextra -Werror -O0 -g -MMD -MP  -std=gnu11 -c src/platform/posix/core/os/file_posix.c -o build/cbuild/src/platform/posix/core/os/file_posix.c.o",
+		"file":      "/home/leo/dev/c/cbuild/src/platform/posix/core/os/file_posix.c",
+		"output":    "/home/leo/dev/c/cbuild/build/cbuild/src/platform/posix/core/os/file_posix.c.o"
+	},
+	{
+		"directory": "/home/leo/dev/c/cbuild",
+		"command":   "gcc -Iinclude -Isrc -Isrc/cli -Isrc/core -Isrc/core/memory -Isrc/core/allocators -Isrc/core/containers -Isrc/core/logger -Isrc/core/os -Isrc/core/string -Isrc/graph -Isrc/builder -Isrc/platform -Isrc/platform/posix/core/memory -Isrc/platform/posix/core/os -Wall -Wextra -Werror -O0 -g -MMD -MP  -std=gnu11 -c src/platform/posix/core/os/process_posix.c -o build/cbuild/src/platform/posix/core/os/process_posix.c.o",
+		"file":      "/home/leo/dev/c/cbuild/src/platform/posix/core/os/process_posix.c",
+		"output":    "/home/leo/dev/c/cbuild/build/cbuild/src/platform/posix/core/os/process_posix.c.o"
+	}
+]

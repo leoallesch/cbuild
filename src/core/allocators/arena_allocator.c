@@ -1,11 +1,12 @@
 #include <assert.h>
 #include <string.h>
 
-#include "arena_allocator.h"
-#include "i_allocator.h"
-#include "mem_utils.h"
+#include "core/alloc/allocator.h"
+#include "core/alloc/arena_allocator.h"
+#include "core/logger/logger.h"
+#include "core/mem/mem_utils.h"
 
-void arena_destroy(i_allocator_t* allocator)
+void arena_destroy(allocator_t* allocator)
 {
   arena_t* arena = (arena_t*)allocator;
   mem_release(arena->mem, arena->buffer, arena->capacity);
@@ -14,13 +15,13 @@ void arena_destroy(i_allocator_t* allocator)
   arena->offset = 0;
 }
 
-void arena_free_all(i_allocator_t* allocator)
+void arena_free_all(allocator_t* allocator)
 {
   arena_t* arena = (arena_t*)allocator;
   arena->offset = 0;
 }
 
-static void* arena_allocate(i_allocator_t* allocator, size_t size, size_t alignment)
+static void* arena_allocate(allocator_t* allocator, size_t size, size_t alignment)
 {
   arena_t* arena = (arena_t*)allocator;
   if(size == 0) {
@@ -35,6 +36,7 @@ static void* arena_allocate(i_allocator_t* allocator, size_t size, size_t alignm
   size_t new_offset = aligned_offset + size;
 
   if(new_offset > arena->capacity) {
+    log_fatal("Arena unable to allocate!\nRequested offset: %ld\nCapacity: %ld", new_offset, arena->capacity);
     return NULL;
   }
 
@@ -59,7 +61,7 @@ static void* arena_allocate(i_allocator_t* allocator, size_t size, size_t alignm
   return ptr;
 }
 
-static void* arena_realloc(i_allocator_t* allocator, void* ptr, size_t old_size, size_t size, size_t alignment)
+static void* arena_realloc(allocator_t* allocator, void* ptr, size_t old_size, size_t size, size_t alignment)
 {
   void* buffer = arena_allocate(allocator, size, alignment);
   if(!buffer) {
@@ -69,14 +71,14 @@ static void* arena_realloc(i_allocator_t* allocator, void* ptr, size_t old_size,
   return buffer;
 }
 
-static void arena_free(i_allocator_t* allocator, void* ptr)
+static void arena_free(allocator_t* allocator, void* ptr)
 {
   (void)allocator;
   (void)ptr;
   assert(!"Arena allocator does not support individual frees!");
 }
 
-static i_allocator_t interface = {
+static allocator_t interface = {
   .alloc = arena_allocate,
   .free = arena_free,
   .free_all = arena_free_all,
@@ -84,7 +86,7 @@ static i_allocator_t interface = {
   .destroy = arena_destroy,
 };
 
-arena_t arena_init(i_mem_t* mem, size_t size)
+arena_t arena_init(mem_t* mem, size_t size)
 {
   uint8_t* buffer = mem_reserve(mem, &size);
 

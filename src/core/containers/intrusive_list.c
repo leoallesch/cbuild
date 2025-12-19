@@ -1,5 +1,5 @@
 #include <stddef.h>
-#include "intrusive_list.h"
+#include "core/container/intrusive_list.h"
 
 static void intrusive_list__insert(intrusive_list_node_t* node,
   intrusive_list_node_t* prev,
